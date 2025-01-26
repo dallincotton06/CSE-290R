@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn5q8x3dtvu8a"]
+
+[ext_resource type="PackedScene" uid="uid://bgmbp8rcy8by6" path="res://tiledmaps/test-map.tmx" id="1_vmt63"]
+[ext_resource type="Script" path="res://tiledmaps/TestMap.cs" id="2_yp0lv"]
+[ext_resource type="PackedScene" uid="uid://54rahbxr2j1e" path="res://scenes/enemies/BaseEnemy.tscn" id="3_dhhs7"]
+
+[node name="test-map" instance=ExtResource("1_vmt63")]
+script = ExtResource("2_yp0lv")
+
+[node name="Tile Layer 1" parent="." index="0"]
+unique_name_in_owner = true
+metadata/nav0 = Vector2(4, 4)
+metadata/nav1 = Vector2(4, 2)
+metadata/nav2 = Vector2(2, 2)
+metadata/nav3 = Vector2(2, 6)
+
+[node name="BaseEnemy" parent="." index="2" instance=ExtResource("3_dhhs7")]
+position = Vector2(-2, 565)

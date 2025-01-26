@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://8wdoph65ldeg"]
+
+[ext_resource type="Script" path="res://scenes/popups/AddTowerButton.cs" id="1_gpxn6"]
+[ext_resource type="Texture2D" uid="uid://84d7hygjhebw" path="res://assets/textures/buttons/add_tower.png" id="1_q46w8"]
+
+[node name="AddTowerButton" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.056
+anchor_bottom = 0.1
+offset_right = -64.512
+offset_bottom = -64.8
+script = ExtResource("1_gpxn6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_q46w8")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

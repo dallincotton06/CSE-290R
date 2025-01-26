@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://28o5ok65l6uy"]
+
+[node name="NavigationPoint" type="Marker2D"]

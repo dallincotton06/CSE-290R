@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.1" orientation="orthogonal" renderorder="right-down" width="15" height="8" tilewidth="128" tileheight="128" infinite="0" nextlayerid="3" nextobjectid="3">
+ <tileset firstgid="1" source="tile-streight.tsx"/>
+ <tileset firstgid="2" source="tile-intersection.tsx"/>
+ <tileset firstgid="3" source="tile-grass.tsx"/>
+ <tileset firstgid="4" source="tile-corner.tsx"/>
+ <tileset firstgid="5" source="tile-build.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="15" height="8">
+  <data encoding="csv">
+3,3221225476,1,1,1,1,1,1,1610612740,3,3,3,3,3,3,
+3,2684354564,1,1,1,1,1610612740,3,2684354561,5,3221225476,1,1610612740,3,3,
+3,5,3221225476,1,1610612740,5,2684354561,3,2684354561,3,1610612737,3,2684354561,5,3,
+3,3,2684354561,5,2684354561,3,2684354561,5,2684354561,3,1610612737,5,2684354561,3,3,
+1,1,2,1,4,3,2684354561,3,2684354561,5,1610612737,3,2684354561,3,3,
+3,5,2684354561,3,3,5,2684354561,3,2684354561,3,1610612737,3,2684354561,3,3,
+3,3,2684354564,3221225473,3221225473,3221225473,4,3,2684354564,3221225473,4,5,2684354561,3,3,
+3,3,3,3,3,3,5,3221225476,1,1,1,1,4,3,3
+</data>
+ </layer>
+ <objectgroup id="2" name="Object Layer 1"/>
+</map>

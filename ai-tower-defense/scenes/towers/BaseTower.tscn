@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://5qm0gvts6cyh"]
+
+[ext_resource type="Texture2D" uid="uid://cou714lcnqcv1" path="res://assets/textures/towers/tower.png" id="1_djpxi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xio8h"]
+radius = 491.2
+
+[node name="BaseTower" type="Node2D"]
+
+[node name="Tower" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("1_djpxi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(57, 61)
+shape = SubResource("CircleShape2D_xio8h")

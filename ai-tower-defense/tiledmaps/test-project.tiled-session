@@ -1,0 +1,68 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "test-map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "test-map.tmx": {
+            "scale": 0.4618,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 885.6647899523604,
+                "y": 291.2516240796882
+            }
+        },
+        "tile-build.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile-corner.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile-grass.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile-intersection.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tile-streight.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "/home/dallin/ai-tower-defense/tiledmaps",
+    "map.height": 8,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 128,
+    "map.tileWidth": 128,
+    "map.width": 15,
+    "openFiles": [
+        "test-map.tmx",
+        "tile-streight.tsx",
+        "tile-build.tsx",
+        "tile-corner.tsx",
+        "tile-grass.tsx",
+        "tile-intersection.tsx"
+    ],
+    "project": "test-project.tiled-project",
+    "recentFiles": [
+        "tile-intersection.tsx",
+        "tile-grass.tsx",
+        "tile-corner.tsx",
+        "tile-build.tsx",
+        "tile-streight.tsx",
+        "test-map.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 128,
+        "width": 128
+    }
+}
