@@ -7,6 +7,9 @@
 radius = 14.0357
 
 [node name="BaseEnemyBody" type="CharacterBody2D"]
+scale = Vector2(1.4, 1.4)
+collision_layer = 6
+collision_mask = 0
 script = ExtResource("1_yrd4j")
 
 [node name="Enemy" type="Sprite2D" parent="."]

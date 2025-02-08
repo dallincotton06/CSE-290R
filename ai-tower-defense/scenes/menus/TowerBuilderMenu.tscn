@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgxixnyfs34dy"]
+
+[ext_resource type="Script" path="res://scenes/menus/TowerBuilderMenu.cs" id="1_7qf43"]
+[ext_resource type="PackedScene" uid="uid://cxjo7lerl6a7w" path="res://scenes/menus/DynamicValueSlider.tscn" id="1_jppr6"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -283.0
+offset_top = -73.0
+offset_right = -283.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7qf43")
+
+[node name="DamageLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 29.0
+offset_right = 100.0
+offset_bottom = 69.0
+text = "Damage"
+fit_content = true
+autowrap_mode = 0
+
+[node name="DamageSlider" parent="." instance=ExtResource("1_jppr6")]
+layout_mode = 1
+offset_left = 106.0
+offset_top = 35.0
+offset_right = 106.0
+offset_bottom = 35.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 58.0
+offset_right = 99.0
+offset_bottom = 98.0
+text = "Fire Speed
+"
+fit_content = true
+autowrap_mode = 0
+
+[node name="FireSpeedSlider" parent="." instance=ExtResource("1_jppr6")]
+layout_mode = 1
+offset_left = 106.0
+offset_top = 64.0
+offset_right = 106.0
+offset_bottom = 64.0
+
+[node name="HSlider" parent="FireSpeedSlider" index="0"]
+min_value = 1.0
+max_value = 50.0
+step = 1.0
+value = 1.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 89.0
+offset_right = 132.0
+offset_bottom = 129.0
+text = "Range"
+fit_content = true
+autowrap_mode = 0
+
+[node name="RangeSlider" parent="." instance=ExtResource("1_jppr6")]
+layout_mode = 1
+offset_left = 107.0
+offset_top = 95.0
+offset_right = 107.0
+offset_bottom = 95.0
+
+[node name="HSlider" parent="RangeSlider" index="0"]
+min_value = 1.0
+max_value = 99.0
+step = 1.0
+value = 1.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 126.0
+offset_right = 329.0
+offset_bottom = 157.0
+text = "Add Tower"
+
+[connection signal="pressed" from="Button" to="." method="onBuildRequest"]
+
+[editable path="DamageSlider"]
+[editable path="FireSpeedSlider"]
+[editable path="RangeSlider"]

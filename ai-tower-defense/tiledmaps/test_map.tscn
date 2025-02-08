@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn5q8x3dtvu8a"]
+[gd_scene load_steps=3 format=3 uid="uid://bn5q8x3dtvu8a"]
 
 [ext_resource type="PackedScene" uid="uid://bgmbp8rcy8by6" path="res://tiledmaps/test-map.tmx" id="1_vmt63"]
 [ext_resource type="Script" path="res://tiledmaps/TestMap.cs" id="2_yp0lv"]
-[ext_resource type="PackedScene" uid="uid://54rahbxr2j1e" path="res://scenes/enemies/BaseEnemy.tscn" id="3_dhhs7"]
 
 [node name="test-map" instance=ExtResource("1_vmt63")]
 script = ExtResource("2_yp0lv")
@@ -13,6 +12,15 @@ metadata/nav0 = Vector2(4, 4)
 metadata/nav1 = Vector2(4, 2)
 metadata/nav2 = Vector2(2, 2)
 metadata/nav3 = Vector2(2, 6)
-
-[node name="BaseEnemy" parent="." index="2" instance=ExtResource("3_dhhs7")]
-position = Vector2(-2, 565)
+metadata/nva4 = Vector2i(6, 6)
+metadata/nav5 = Vector2i(6, 1)
+metadata/nav6 = Vector2i(1, 1)
+metadata/nav7 = Vector2i(1, 0)
+metadata/nav8 = Vector2i(8, 0)
+metadata/nav9 = Vector2i(8, 6)
+metadata/nav10 = Vector2i(10, 6)
+metadata/nav11 = Vector2i(10, 1)
+metadata/nav12 = Vector2i(12, 1)
+metadata/nav13 = Vector2i(12, 7)
+metadata/nav14 = Vector2i(7, 7)
+metadata/nav15 = Vector2i(7, 8)

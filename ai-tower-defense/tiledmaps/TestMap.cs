@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
-using AITowerdefense.tiledmaps.TileActions;
-using AITowerdefense.tiledmaps.TileActions.Actions;
+using AITowerdefense.ai.offense.rounds;
+using AITowerdefense.ai.offense.rounds.presets;
+using AITowerdefense.tiledmaps.handlers;
+
 using Godot;
 
 
@@ -16,21 +18,19 @@ public partial class TestMap : Node2D {
 	private List<Vector2> buildablePositions = new();
 	private Node2D navigationLayer = new();
 	private Node2D collisionLayer = new();
-	private List<ITileEvent> tileEvents = new();
 	private List<Vector2> navigationPoints = new();
+	private RoundHandler roundHandler;
+	private BuildHandler buildHandler;
 
 	public override void _Ready() {
 		base._Ready();
 		this.initializeMapLayers();
 		this.initializeBuildablePositions();
 		this.initializeNavigationData();
+		roundHandler = new RoundHandler(layers[0]);
+		buildHandler = new BuildHandler(this);
 
-		BaseEnemyBody enemyPhysical = enemy.Instantiate<BaseEnemyBody>();
-		enemyPhysical.plotNavigationData(this);
-		Console.WriteLine("Before " + navigationPoints.Count);
-		enemyPhysical.Position = TestMap.tileToWorld(new Vector2I(0, 4));
-		AddChild(enemyPhysical);
-		Console.WriteLine("After " + navigationPoints.Count);
+		this.initializeRound();
 	}
 	private void initializeMapLayers() {
 		foreach (var child in this.GetChildren()) {
@@ -47,15 +47,13 @@ public partial class TestMap : Node2D {
 				navigationPoints.Add((Vector2I) layer.GetMeta(navigationSet));
 			}
 		}
-
-		Console.WriteLine(navigationPoints.Count);
 	}
 	
 	public override void _Input(InputEvent @event) {
 		var clickedCell = getMouseCell();
 		if (isPositionBuildable() && @event is InputEventMouseButton eventMouseButton && eventMouseButton.Pressed) {
 			buildablePositions.Remove(clickedCell);
-			new BuildTileAction().onCLick(clickedCell, layers[0]);
+			buildHandler.openBuildMenu(clickedCell);
 		}
 	}
 
@@ -81,16 +79,10 @@ public partial class TestMap : Node2D {
 		}
 	}
 
-	private void AddTowerPopup(Vector2 mouseRelativePosition) {
-		var instance = addTowerButton.Instantiate() as TextureButton;
-		if (instance != null) {
-			instance.Position = mouseRelativePosition;
-			AddChild(instance);
-		}
-	}
-
-	private void RemoveTowerPopup() {
-		// Placeholder for your removal logic
+	private void initializeRound() {
+		roundHandler.addToQueue(new Round1());
+		roundHandler.batchRound();
+		roundHandler.sendRound();
 	}
 
 	private Vector2I getMouseCell() {
@@ -103,14 +95,30 @@ public partial class TestMap : Node2D {
 	public override void _ExitTree() {
 		base._ExitTree();
 		addTowerButton = null;
+		this.roundHandler.getQueue().Clear();
+		this.roundHandler = null;
+		foreach (Node child in this.GetChildren()) {
+			child.QueueFree();
+		}
 	}
 
 	public static Vector2 tileToWorld(Vector2I position) {
 		return new Vector2(position.X * TILE_SIZE, 
 						   position.Y * TILE_SIZE);
 	}
+	
+	public static Vector2 tileToWorld(Vector2I position, Vector2 bounds) {
+		return new Vector2(position.X * TILE_SIZE + (TILE_SIZE - bounds.X) / 2, 
+						   position.Y * TILE_SIZE + (TILE_SIZE - bounds.Y) / 2);
+	}
 
 	public List<Vector2> getNavigationPoints() {
 		return navigationPoints;
 	}
+
+	public List<TileMapLayer> getLayers() {
+		return layers;
+	}
+	
+	
 }

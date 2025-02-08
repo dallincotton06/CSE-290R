@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxjo7lerl6a7w"]
+
+[ext_resource type="Script" path="res://scenes/menus/DynamicValueSlider.cs" id="1_j3khc"]
+
+[node name="DynamicValueSlider" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j3khc")
+
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 16.0
+min_value = 10.0
+max_value = 9999.0
+step = 10.0
+value = 10.0
+rounded = true
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 367.0
+offset_top = -4.0
+offset_right = 407.0
+offset_bottom = 36.0
+text = "0"
+
+[connection signal="value_changed" from="HSlider" to="." method="onValueChange"]

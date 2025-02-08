@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtyvknrufey1"]
+
+[ext_resource type="Script" path="res://scenes/towers/TowerTurret.cs" id="1_kv5fd"]
+[ext_resource type="Texture2D" uid="uid://bghyvd15pgbft" path="res://assets/textures/towers/tower-turrett.png" id="2_se0jk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8c3rj"]
+radius = 7.28011
+
+[node name="TowerTurret" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_kv5fd")
+
+[node name="Tower-turrett" type="Sprite2D" parent="."]
+position = Vector2(64, 64)
+texture = ExtResource("2_se0jk")
+
+[node name="ShootingPoint" type="Marker2D" parent="Tower-turrett"]
+unique_name_in_owner = true
+position = Vector2(24, 0)
+rotation = -0.00777938
+
+[node name="Range" type="CollisionShape2D" parent="."]
+position = Vector2(73, 63)
+shape = SubResource("CircleShape2D_8c3rj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="onTimerTimeout"]
