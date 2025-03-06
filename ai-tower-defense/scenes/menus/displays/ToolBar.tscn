@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmblj1q3aikai"]
+
+[ext_resource type="Texture2D" uid="uid://wfyw5v84elkj" path="res://assets/textures/toolbar.png" id="1_o0p6u"]
+[ext_resource type="PackedScene" uid="uid://dtvfs5opvvlx" path="res://scenes/menus/displays/CurrencyDisplay.tscn" id="2_reruq"]
+[ext_resource type="PackedScene" uid="uid://s8vc0mpvlxlv" path="res://scenes/menus/displays/HealthDisplay.tscn" id="3_g6y7f"]
+
+[node name="ToolBar" type="Node2D"]
+
+[node name="Toolbar" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(1.80223, 0.444444)
+texture = ExtResource("1_o0p6u")
+offset = Vector2(540.73, 94.5)
+
+[node name="CurrencyDisplay" parent="." instance=ExtResource("2_reruq")]
+position = Vector2(1594, 11)
+scale = Vector2(0.98065, 0.98065)
+
+[node name="HealthDisplay" parent="." instance=ExtResource("3_g6y7f")]
+position = Vector2(1394, 7)

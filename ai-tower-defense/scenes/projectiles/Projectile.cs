@@ -11,7 +11,6 @@ public partial class Projectile : Area2D {
 	public override void _Ready() {
 		base._Ready();
 		this.damage = GD.Load<PackedScene>(GetSceneFilePath()).GetMeta("damage").AsInt32();
-		Console.WriteLine(damage);
 	}
 
 	public override void _PhysicsProcess(double delta) {

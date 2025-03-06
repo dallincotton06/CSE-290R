@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcessd24vemej"]
+
+[ext_resource type="PackedScene" uid="uid://bn5q8x3dtvu8a" path="res://tiledmaps/test_map.tscn" id="1_upqni"]
+
+[node name="GameScreen" type="Node2D"]
+
+[node name="test-map" parent="." instance=ExtResource("1_upqni")]
+position = Vector2(0, 51)

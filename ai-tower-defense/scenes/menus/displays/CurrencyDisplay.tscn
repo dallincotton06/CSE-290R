@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtvfs5opvvlx"]
+
+[ext_resource type="Script" path="res://scenes/menus/displays/CurrencyDisplay.cs" id="1_bwf16"]
+[ext_resource type="Texture2D" uid="uid://cq2o42bltpo74" path="res://assets/textures/towers/currency.png" id="1_otbvu"]
+
+[node name="CurrencyDisplay" type="Node2D"]
+script = ExtResource("1_bwf16")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_otbvu")
+
+[node name="TextDisplay" type="RichTextLabel" parent="."]
+offset_left = 78.0
+offset_top = -2.0
+offset_right = 394.0
+offset_bottom = 71.0
+theme_override_font_sizes/mono_font_size = 12
+theme_override_font_sizes/normal_font_size = 50
+text = "$0"

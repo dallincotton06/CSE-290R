@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dycnq56ij5dfq"]
+
+[ext_resource type="PackedScene" uid="uid://bn5q8x3dtvu8a" path="res://tiledmaps/test_map.tscn" id="1_erjyl"]
+[ext_resource type="PackedScene" uid="uid://cmblj1q3aikai" path="res://scenes/menus/displays/ToolBar.tscn" id="2_3bur6"]
+
+[node name="GameScreen" type="Node2D"]
+
+[node name="test-map" parent="." instance=ExtResource("1_erjyl")]
+position = Vector2(1, 72)
+
+[node name="GameOverScreen" parent="test-map/GameOverScreen" index="0"]
+offset_left = -2.0
+offset_top = 71.0
+offset_right = -2.0
+offset_bottom = 71.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ToolBar" parent="." instance=ExtResource("2_3bur6")]
+position = Vector2(-1, -3)
+
+[editable path="test-map"]

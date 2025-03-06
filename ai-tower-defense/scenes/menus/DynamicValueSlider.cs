@@ -9,6 +9,7 @@ public partial class DynamicValueSlider : Control {
 		base._Ready();
 		slider = GetNode<HSlider>("HSlider");
 		text = GetNode<RichTextLabel>("Text");
+		text.SetText(slider.MinValue.ToString());
 	}
 
 	private void onValueChange(int value) {

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://s8vc0mpvlxlv"]
+
+[ext_resource type="Script" path="res://scenes/menus/displays/HealthDisplay.cs" id="1_1n1oi"]
+[ext_resource type="Texture2D" uid="uid://cm7ctue1y7nha" path="res://assets/textures/heart.png" id="2_l7dd0"]
+
+[node name="HealthDisplay" type="Node2D"]
+script = ExtResource("1_1n1oi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_l7dd0")
+
+[node name="TextDisplay" type="RichTextLabel" parent="."]
+offset_left = 78.0
+offset_top = -2.0
+offset_right = 394.0
+offset_bottom = 71.0
+theme_override_font_sizes/mono_font_size = 12
+theme_override_font_sizes/normal_font_size = 50
+text = "100"

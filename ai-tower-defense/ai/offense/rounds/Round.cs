@@ -7,15 +7,18 @@ public class Round {
     private List<EnemyCluster> clusters;
     private float clusterSpacing = 0.5f;
     private bool concurrency = false;
+    private int roundNumber { get; }
 
-    public Round(List<EnemyCluster> clusters) {
+    public Round(List<EnemyCluster> clusters, int roundNumber) {
         this.clusters = clusters;
+        this.roundNumber = roundNumber;
     }
 
-    public Round(List<EnemyCluster> clusters, float clusterSpacing, bool concurrency) {
+    public Round(List<EnemyCluster> clusters, int roundNumber, float clusterSpacing, bool concurrency) {
         this.clusters = clusters;
         this.clusterSpacing = clusterSpacing;
         this.concurrency = concurrency;
+        this.roundNumber = roundNumber;
     }
 
     public List<(BaseEnemyBody, float)> batch() {

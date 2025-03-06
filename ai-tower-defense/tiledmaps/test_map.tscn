@@ -1,12 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn5q8x3dtvu8a"]
+[gd_scene load_steps=9 format=3 uid="uid://bn5q8x3dtvu8a"]
 
 [ext_resource type="PackedScene" uid="uid://bgmbp8rcy8by6" path="res://tiledmaps/test-map.tmx" id="1_vmt63"]
-[ext_resource type="Script" path="res://tiledmaps/TestMap.cs" id="2_yp0lv"]
+[ext_resource type="Script" path="res://tiledmaps/TestMap.cs" id="2_bmb2u"]
+[ext_resource type="PackedScene" uid="uid://hl0axyv6kwsu" path="res://scenes/menus/screen/GameOverScreen.tscn" id="3_idm7w"]
+[ext_resource type="Script" path="res://tiledmaps/handlers/BuildHandler.cs" id="3_svft8"]
+[ext_resource type="Script" path="res://tiledmaps/handlers/RoundHandler.cs" id="4_08ani"]
+[ext_resource type="PackedScene" uid="uid://dtvfs5opvvlx" path="res://scenes/menus/displays/CurrencyDisplay.tscn" id="6_h66h8"]
+[ext_resource type="PackedScene" uid="uid://s8vc0mpvlxlv" path="res://scenes/menus/displays/HealthDisplay.tscn" id="7_ceb87"]
+[ext_resource type="Script" path="res://functions/RoundHandler.cs" id="8_fcw2d"]
 
 [node name="test-map" instance=ExtResource("1_vmt63")]
-script = ExtResource("2_yp0lv")
+script = ExtResource("2_bmb2u")
 
-[node name="Tile Layer 1" parent="." index="0"]
+[node name="GameOverScreen" type="CanvasLayer" parent="." index="0"]
+
+[node name="GameOverScreen" parent="GameOverScreen" index="0" instance=ExtResource("3_idm7w")]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = -4.0
+offset_bottom = -4.0
+
+[node name="Tile Layer 1" parent="." index="1"]
 unique_name_in_owner = true
 metadata/nav0 = Vector2(4, 4)
 metadata/nav1 = Vector2(4, 2)
@@ -24,3 +38,18 @@ metadata/nav12 = Vector2i(12, 1)
 metadata/nav13 = Vector2i(12, 7)
 metadata/nav14 = Vector2i(7, 7)
 metadata/nav15 = Vector2i(7, 8)
+
+[node name="CurrencyDisplay" parent="." index="3" instance=ExtResource("6_h66h8")]
+position = Vector2(1618, 23)
+
+[node name="HealthDisplay" parent="." index="4" instance=ExtResource("7_ceb87")]
+position = Vector2(1422, 21)
+
+[node name="BuildHandler" type="Node2D" parent="." index="5"]
+script = ExtResource("3_svft8")
+
+[node name="RoundHandler" type="Node2D" parent="." index="6"]
+script = ExtResource("4_08ani")
+
+[node name="Node2D" type="Node2D" parent="." index="7"]
+script = ExtResource("8_fcw2d")

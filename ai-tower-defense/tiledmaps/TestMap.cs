@@ -2,9 +2,14 @@ using System;
 using System.Collections.Generic;
 using AITowerdefense.ai.offense.rounds;
 using AITowerdefense.ai.offense.rounds.presets;
+using AITowerdefense.ai.offense.sender;
+using AITowerdefense.eventbus;
+using AITowerdefense.eventbus.events;
+using AITowerdefense.functions;
 using AITowerdefense.tiledmaps.handlers;
 
 using Godot;
+using RoundHandler = AITowerdefense.functions.RoundHandler;
 
 
 public partial class TestMap : Node2D {
@@ -19,18 +24,24 @@ public partial class TestMap : Node2D {
 	private Node2D navigationLayer = new();
 	private Node2D collisionLayer = new();
 	private List<Vector2> navigationPoints = new();
-	private RoundHandler roundHandler;
-	private BuildHandler buildHandler;
+	private EventBus eventBus = new();
+	private CurrencyHandler handler = new CurrencyHandler();
+	private HealthHandler healthHandler = new();
+	private GameStateHandler stateHandler = new();
+	private CanvasLayer gameOverScreen;
+	private RoundHandler roundHandler = new();
+	private TowerReaderHandler towerReaderHandler = new();
 
 	public override void _Ready() {
 		base._Ready();
 		this.initializeMapLayers();
 		this.initializeBuildablePositions();
 		this.initializeNavigationData();
-		roundHandler = new RoundHandler(layers[0]);
-		buildHandler = new BuildHandler(this);
-
 		this.initializeRound();
+		gameOverScreen = GetNode<CanvasLayer>("GameOverScreen");
+		gameOverScreen.Visible = false;
+		EventBus.Instance.Subscribe<GameOverEvent>(gameOver);
+
 	}
 	private void initializeMapLayers() {
 		foreach (var child in this.GetChildren()) {
@@ -48,12 +59,13 @@ public partial class TestMap : Node2D {
 			}
 		}
 	}
-	
-	public override void _Input(InputEvent @event) {
+
+	private bool sent = false;
+	public async override void _Input(InputEvent @event) {
 		var clickedCell = getMouseCell();
 		if (isPositionBuildable() && @event is InputEventMouseButton eventMouseButton && eventMouseButton.Pressed) {
 			buildablePositions.Remove(clickedCell);
-			buildHandler.openBuildMenu(clickedCell);
+			EventBus.Instance.Publish(new BuildSiteClicked(clickedCell));
 		}
 	}
 
@@ -71,7 +83,7 @@ public partial class TestMap : Node2D {
 			for (int x = 0; MAP_SIZE.X > x; x++) {
 				for (int y = 0; MAP_SIZE.Y > y; y++) {
 					if (currentLayer.GetCellTileData(new Vector2I(x, y))
-							.GetCollisionPolygonsCount(currentLayer.GetIndex()) > 0) {
+							.GetCollisionPolygonsCount(0) > 0) {
 						buildablePositions.Add(new Vector2(x, y));
 					}
 				}
@@ -80,9 +92,6 @@ public partial class TestMap : Node2D {
 	}
 
 	private void initializeRound() {
-		roundHandler.addToQueue(new Round1());
-		roundHandler.batchRound();
-		roundHandler.sendRound();
 	}
 
 	private Vector2I getMouseCell() {
@@ -95,8 +104,6 @@ public partial class TestMap : Node2D {
 	public override void _ExitTree() {
 		base._ExitTree();
 		addTowerButton = null;
-		this.roundHandler.getQueue().Clear();
-		this.roundHandler = null;
 		foreach (Node child in this.GetChildren()) {
 			child.QueueFree();
 		}
@@ -119,6 +126,11 @@ public partial class TestMap : Node2D {
 	public List<TileMapLayer> getLayers() {
 		return layers;
 	}
-	
+
+	private void gameOver(GameOverEvent @event) {
+		gameOverScreen.Visible = true;
+		GetTree().Paused = true;
+
+	}
 	
 }

@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using AITowerdefense.eventbus;
+using AITowerdefense.eventbus.events.entity;
 using AITowerdefense.scenes.enemies.Components;
 
 public partial class BaseEnemyBody : CharacterBody2D, IDamagable, ICloneable {
@@ -21,8 +23,6 @@ public partial class BaseEnemyBody : CharacterBody2D, IDamagable, ICloneable {
 			foreach (Vector2I index in mapLayer.getNavigationPoints()) {
 				TargetPoints.Add(TestMap.tileToWorld(index, new Vector2(32, 32)));
 			}
-
-			Console.WriteLine("[Trgets]: " + getTargetPoints().Count);
 		}
 	}
 
@@ -47,9 +47,10 @@ public partial class BaseEnemyBody : CharacterBody2D, IDamagable, ICloneable {
 		Velocity = direction * meta.getSpeed();
 		MoveAndSlide();
 
-		if (GlobalPosition.DistanceTo(target) < 5.0) {
+		if (GlobalPosition.DistanceTo(target) < 7.5) {
 			_currentTargetIndex++;
 			if (_currentTargetIndex >= TargetPoints.Count) {
+				EventBus.Instance.Publish(new EntityExitedEvent(meta));
 				QueueFree();
 			}
 		}
@@ -58,6 +59,7 @@ public partial class BaseEnemyBody : CharacterBody2D, IDamagable, ICloneable {
 	public void damage(int amount) {
 		meta.setHealth(meta.getHealth() - amount);
 		if (meta.getHealth() <= 0) {
+			EventBus.Instance.Publish(new EnemyKilledEvent(meta));
 			QueueFree();
 		}
 	}

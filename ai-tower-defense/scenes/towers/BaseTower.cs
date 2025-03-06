@@ -11,7 +11,6 @@ public partial class BaseTower : Sprite2D {
 	public override void _Ready() {
 		base._Ready();
 		turret = GetNode<TowerTurret>("TowerTurret");
-		this.initialize(meta);
 	}
 
 	public override void _PhysicsProcess(double delta) {
